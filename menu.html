@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>Live Dinner Restaurant - Responsive HTML5 Template</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript">
+        var url = "json/product.json";
+        $(document).ready(function(){
+            $.getJSON(url).done(function(products){
+                var productList = '';
+                //console.log('Lista de productos');
+                $.each(products, function(index, prod){
+                    //console.log(index + ' - ' + prod.nom);
+                    productList += '<div class="col-sm-4">';
+                    productList += '    <p class="inset">' + prod.nom + '<br>' + prod.mar + '</p>';                   
+                    productList += '    <p style="color:white" class = "bg-info">Precio : '+ prod.pre + "</p>";					
+					productList += '    <img src="images/'+prod.img + '" class="img-responsive" style="width:100%" />';
+					productList += '    <p>'+ '<br>' + '</p>'; 
+					productList += '    <a class = "btn btn-success" href="javascript:comprar(\'' + prod.nom  + '\')">Comprar</a>';
+					productList += '    <p>'+ '<br>' + '</p>'; 
+					productList += '</div>';
+					
+                });
+                $('#products').html(productList);
+            });
+            $("button").click(function(){
+                console.log('Comprar');
+            });
+        });
+
+        var urlWhatsApp = 'https://wa.me/51997845123?text='
+
+        function comprar( producto ){
+            console.log('Comprar');
+            window.open(urlWhatsApp + 'Deseo el producto ' + producto );
+        }
+
+        var img = new Image();
+        // Variables de usuario - personalizar estas para cambiar la imagen cuando inicie el desplazamiento
+        // dirección y velocidad.
+        img.src = "images/platos.jpg";
+        var CanvasXSize = 900;
+        var CanvasYSize = 292;
+        var speed = 30; //más bajo es más rápido
+        var scale = 1.05;
+        var y = -4.5; //desplazamiento vertical
+
+        // Programa principal
+
+        var dx = 0.75;
+        var imgW;
+        var imgH;
+        var x = 0;
+        var clearX;
+        var clearY;
+        var ctx;
+
+        img.onload = function() {
+            imgW = img.width * scale;
+            imgH = img.height * scale;
+            
+            if (imgW > CanvasXSize) {
+                // imagen más grande que canvas
+                x = CanvasXSize - imgW;
+            }
+            if (imgW > CanvasXSize) {
+                // ancho de imagen más grande que canvas
+                clearX = imgW;
+            } else {
+                clearX = CanvasXSize;
+            }
+            if (imgH > CanvasYSize) {
+                // altura de la imagen más grande que canvas
+                clearY = imgH;
+            } else {
+                clearY = CanvasYSize;
+            }
+            
+            // obtener contexto de canvas
+            ctx = document.getElementById('canvas').getContext('2d');
+         
+            // establecer frecuencia de actualización
+            return setInterval(draw, speed);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, clearX, clearY); // clear the canvas
+            
+            // si la imagen es <= tamaño de Canvas
+            if (imgW <= CanvasXSize) {
+                // reiniciar, comenzar desde el principio
+                if (x > CanvasXSize) {
+                    x = -imgW + x;
+                }
+                // dibujar image1 adicional
+                if (x > 0) {
+                    ctx.drawImage(img, -imgW + x, y, imgW, imgH);
+                }
+                // dibujar image2 adicional
+                if (x - imgW > 0) {
+                    ctx.drawImage(img, -imgW * 2 + x, y, imgW, imgH);
+                }
+            }
+
+            // la imagen es > tamaño de Canvas
+            else {
+                // reiniciar, comenzar desde el principio
+                if (x > (CanvasXSize)) {
+                    x = CanvasXSize - imgW;
+                }
+                // dibujar image adicional
+                if (x > (CanvasXSize-imgW)) {
+                    ctx.drawImage(img, x - imgW + 1, y, imgW, imgH);
+                }
+            }
+            // dibujar imagen
+            ctx.drawImage(img, x, y,imgW, imgH);
+            // cantidad para moverse
+            x += dx;
+        }
+
+
+    </script>
+   
+	<style>
+		.grid-container {
+		  display: grid;
+		  grid-template-columns: auto auto auto auto;
+		  grid-gap: 10px;
+		  background-color: #2196F3;
+		  padding: 10px;
+		}
+		
+		.grid-container > div {
+		  background-color: rgba(255, 255, 255, 0.8);
+		  text-align: center;
+		  padding: 20px 0;
+		  font-size: 30px;
+		}
+		p.inset {border-style: inset;}
+		</style>
+
+</head>
+
+<body>
+	<!-- Start header -->
+	<header class="top-navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+				<a class="navbar-brand" href="index.html">
+					<img src="images/logo.png" alt="" />
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbars-rs-food">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+						<li class="nav-item active"><a class="nav-link" href="menu.html">Menu</a></li>
+						
+							</div>
+					
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
+	
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+			<div class="container text-center">
+				<div class="row">
+				<div class="col-lg-12">
+					<h1>DISFRUTA DE NUESTROS SABORES PERUANOS</h1>
+					<canvas id="canvas" width="900" height="292"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+	
+	<!-- Start Menu -->
+	<div class="menu-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>MENU ESPECIAL</h2>
+						<p>NUESTRA CARTA CON LOS MEJORES PRECIOS</p>
+					</div>
+				</div>
+			</div>
+			
+			</div>
+		     <div class="container-fluid bg-3 text-center">
+        
+        <div id="products" class="row">
+
+        </div>
+    </div>
+			
+			
+			
+	</footer>
+	<!-- End Footer -->
+	
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
+
+	<!-- ALL JS FILES -->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+	<script src="js/jquery.superslides.min.js"></script>
+	<script src="js/images-loded.min.js"></script>
+	<script src="js/isotope.min.js"></script>
+	<script src="js/baguetteBox.min.js"></script>
+	<script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>
+    <script src="js/custom.js"></script>
+</body>
+</html>

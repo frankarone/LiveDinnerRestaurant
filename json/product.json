@@ -1,0 +1,55 @@
+[
+    {
+        "nom":"Bebidas Especiales 1",
+        "mar":"PROMOCION 2 X 1",
+        "pre": "$18.00",
+        "img":"img-01.jpg"
+    },
+    {
+        "nom":"Bebidas Especiales 2",
+        "mar":"PROMOCION 2 X 1",
+        "pre": "$18.00",
+        "img":"img-02.jpg"
+    },
+    {
+        "nom":"Bebidas Especiales 2",
+        "mar":"PROMOCION 2 X 1",
+        "pre": "$18.00",
+        "img":"img-03.jpg"
+    },
+    {
+        "nom": "Almuerzo especial 1",
+        "mar":"DESCUENTO ESPACIAL",
+        "pre": "$28.00",
+        "img": "img-04.jpg"
+    },
+    {
+        "nom": "Almuerzo especial 2",
+        "mar":"DESCUENTO ESPACIAL",
+        "pre": "$28.00",
+        "img": "img-05.jpg"
+    },
+    {
+        "nom": "Almuerzo especial 3",
+        "mar":"DESCUENTO ESPACIAL",
+        "pre": "$28.00",
+        "img": "img-06.jpg"
+    },
+    {"nom": "Cena especial 1",
+        "mar":"DESCUENTO ESPACIAL",
+        "pre": "$30.00",
+        "img": "img-07.jpg" },
+    
+    {"nom": "Cena especial 2",
+        "mar":"DESCUENTO ESPACIAL",
+        "pre": "$30.00",
+          "img": "img-08.jpg" },
+
+    
+    {"nom": "Cena especial 3",
+        "mar":"DESCUENTO ESPACIAL",
+        "pre": "$30.00", 
+        "img": "img-09.jpg" }
+
+    
+]
